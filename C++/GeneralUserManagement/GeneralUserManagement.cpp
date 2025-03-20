@@ -194,7 +194,7 @@ void del()//Deletes an user doing a physical delete
     }
     else {
         long size = sizeof(users); users product; int pos = 0;
-        arch1.open("usersB.dat", ios::app | ios::out | ios::binary); //	 abre el archivo secundario...
+        arch1.open("usersB.dat", ios::app | ios::out | ios::binary);
         if (arch1.fail()) {
             cout << "Error during opening of temporary archive"; cout << "Press a key... ";
             _getch(); arch.close(); exit(1);
@@ -207,22 +207,24 @@ void del()//Deletes an user doing a physical delete
             cin >> c;
             if (c == "N" || c == "n")
 			{
-				//return 0;
+				return 0;
 			}
-            arch.read((char*)&product, sizeof(users)); // comienza el proceso de baja física...// lee un registro del archivo principal...
+            arch.read((char*)&product, sizeof(users));
             while (!arch.eof()) {
                 if (product.numUser != x) {
-                    arch1.write((char*)&product, sizeof(users));// si x no coincide con legajo, graba en secundario...
+                    arch1.write((char*)&product, sizeof(users));
                 }
                 else {
                     cout << "You have deleted the selected user." << endl;
                     cout << " " << product.numUser << " " << product.name << " " << product.address << " " << product.balance << " " << product.accType;
                     cout << "Press a key... "; _getch();
                 }
-                arch.read((char*)&product, sizeof(users)); // lee otro registro del principal, y vuelve al ciclo...
+                arch.read((char*)&product, sizeof(users));
             }
-            arch.close(); arch1.close();
-            remove("users.dat"); rename("usersB.dat", "users.dat");
+            arch.close(); 
+	    arch1.close();
+            remove("users.dat"); 
+	    rename("usersB.dat", "users.dat");
             cout << "Delete complete..." << endl << endl;
         }
     }
