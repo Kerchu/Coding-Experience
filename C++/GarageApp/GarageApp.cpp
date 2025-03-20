@@ -19,7 +19,10 @@ void writeclient(); void writevehicle(); void arrangeID(); void read(); void cou
 fstream archive, archive2; int  help = 0, help2 = 0;
 
 int main() {
-	archive.open("ClientData.dat", ios::out | ios::app | ios::binary); archive.close(); archive2.open("VehicleData.dat", ios::out | ios::app | ios::binary); archive2.close();
+	archive.open("ClientData.dat", ios::out | ios::app | ios::binary); 
+	archive.close(); 
+	archive2.open("VehicleData.dat", ios::out | ios::app | ios::binary); 
+	archive2.close();
 	countclient(); optionsMenu();
 	return 0;
 }
